@@ -33,7 +33,8 @@
 
 
 ## 5. ERD 
-<img width="882" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/9b253fdc-4bac-4cb6-9b44-a1ddcf473579">
+<img width="852" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/f139d9f7-ab9f-4d62-82ac-5d8f28d17f9c">
+
 
 
 
