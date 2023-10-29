@@ -1,0 +1,7 @@
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+class MyUser(AbstractUser):
+    nickname = models.CharField(max_length=20)
+    posting_num = models.IntegerField(default=0)
+    reply_num = models.IntegerField(default=0)
