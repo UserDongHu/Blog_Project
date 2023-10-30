@@ -21,11 +21,13 @@
     * SQLite3
   
 
-## 3. 프로젝트 구조 및 구현 기능
+## 3. 프로젝트 구조 및 플로우 차트
   3.1 프로젝트 구조
 
     
-  3.2 구현 기능
+  3.2 플로우 차트
+  
+<img width="777" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/87f0db11-f654-403f-804a-2411a263875b">
 
 
 ## 4. WBS
