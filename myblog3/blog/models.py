@@ -39,4 +39,4 @@ class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     hit_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='hit_comments')
     unhit_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unhit_comments')
-    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')

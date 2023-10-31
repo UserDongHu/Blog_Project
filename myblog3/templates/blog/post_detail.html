@@ -1,0 +1,42 @@
+<p>{{post.title}}</p>
+<p>{{post.content}}</p>
+<p>조회수 : {{post.views}}</p>
+{% if post.file_upload %}
+<img src="{{post.file_upload.url}}"></img>
+{% endif %}
+
+<hr>
+<section>
+    <h3>댓글</h3>
+    {% for comment in post.comment_set.all %}
+        {% if not comment.parent_comment %}
+            <li>{{comment.content}}</li>
+            <li>{{comment.user.nickname}}</li>
+            <a href="{% url 'blog:edit_comment' comment.pk %}">수정</a>
+            <a href="{% url 'blog:create_reply' comment.pk %}">대댓글</a>
+            <ul>
+                {% for reply in comment.replies.all %}
+                    <li>{{reply.content}}</li>
+                    <li>{{reply.user.nickname}}</li>
+                    <a href="{% url 'blog:edit_comment' reply.pk %}">수정</a>
+                    <a href="{% url 'blog:create_reply' reply.pk %}">대댓글</a>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endfor %}
+</section>
+
+<section>
+    <h3>댓글 작성</h3>
+    <form action="{% url 'blog:create_comment' post.pk %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="댓글 작성">
+    </form>
+</section>
+
+<a href="{% url 'blog:post_list' %}">목록</a>
+{% if user == post.user %}
+<a href="{% url 'blog:edit_post' post.pk %}">수정</a>
+<a href="{% url 'blog:delete_post' post.pk %}">삭제</a>
+{% endif %}
