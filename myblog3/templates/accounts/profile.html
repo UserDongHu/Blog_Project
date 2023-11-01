@@ -9,7 +9,9 @@
     <h1>프로필 페이지입니다.</h1>
     <p>ID : {{user.username}}</p>
     <p>닉네임 : {{user.nickname}}</p>
-    <p>내 게시글 수 : {{user.posting_num}}</p>
-    <p>내 댓글 수 : {{user.reply_num}}</p>
+    <p>내 누적 게시글 수 : {{user.posting_num}}</p>
+    <a href="{% url 'blog:mypost_list' %}">내 게시글 보기</a>
+    <p>내 누적 댓글 수 : {{user.reply_num}}</p>
+    <a href="{% url 'blog:mycomment_list' %}">내가 댓글 쓴 게시물 보기</a>
 </body>
 </html>

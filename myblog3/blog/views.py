@@ -5,6 +5,7 @@ from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
+from django.views import View
 
 class PostListView(ListView):
     model = Post
@@ -18,6 +19,25 @@ class PostListView(ListView):
     
 post_list = PostListView.as_view()
 
+class MyPostListView(LoginRequiredMixin, ListView):
+    model = Post
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        current_user = self.request.user
+        return queryset.filter(user=current_user)
+    
+mypost_list = MyPostListView.as_view()
+
+class MyCommentListView(LoginRequiredMixin, ListView):
+    model = Post
+    
+    def get_queryset(self):
+        current_user = self.request.user
+        return Post.objects.filter(comment__user=current_user)
+    
+mycomment_list = MyCommentListView.as_view()
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
@@ -26,6 +46,9 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         mypost = form.save(commit=False)
         mypost.user = self.request.user
+        user = self.request.user
+        user.posting_num += 1
+        user.save()
         return super().form_valid(form)
     
     def get_success_url(self):
@@ -82,8 +105,11 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         pk = self.kwargs['pk']
         post = Post.objects.get(pk=pk)
         comment = form.save(commit=False)
-        comment.user = self.request.user
+        user = self.request.user
+        comment.user = user
         comment.post = post
+        user.reply_num += 1
+        user.save()
         comment.save()
         return redirect('blog:post_detail', pk=pk)
     
@@ -112,8 +138,11 @@ class ReplyCreateView(LoginRequiredMixin, CreateView):
         post = Comment.objects.get(pk=pk).post
         postpk = post.pk
         comment = form.save(commit=False)
-        comment.user = self.request.user
+        user = self.request.user
+        comment.user = user
         comment.post = post
+        user.reply_num += 1
+        user.save()
         comment.parent_comment = Comment.objects.get(pk=pk)
         if Comment.objects.get(pk=pk).parent_comment:
             comment.parent_comment = Comment.objects.get(pk=pk).parent_comment
@@ -121,3 +150,65 @@ class ReplyCreateView(LoginRequiredMixin, CreateView):
         return redirect('blog:post_detail', pk=postpk)
     
 create_reply = ReplyCreateView.as_view()
+
+class HitsPostView(View):
+    def get(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        if request.user not in post.hit_users.all():
+            post.hit_users.add(request.user)
+            post.hits += 1
+            post.save()
+        else:
+            post.hit_users.remove(request.user)
+            post.hits -= 1
+            post.save()
+        return redirect('blog:post_detail', pk=pk)
+    
+hits_post = HitsPostView.as_view()
+
+class UnHitsPostView(View):
+    def get(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        if request.user not in post.unhit_users.all():
+            post.unhit_users.add(request.user)
+            post.unhits += 1
+            post.save()
+        else:
+            post.unhit_users.remove(request.user)
+            post.unhits -= 1
+            post.save()
+        return redirect('blog:post_detail', pk=pk)
+    
+unhits_post = UnHitsPostView.as_view()
+
+class HitsCommentView(View):
+    def get(self, request, pk):
+        comment = Comment.objects.get(pk=pk)
+        if request.user not in comment.hit_users.all():
+            comment.hit_users.add(request.user)
+            comment.hits += 1
+            comment.save()
+        else:
+            comment.hit_users.remove(request.user)
+            comment.hits -= 1
+            comment.save()
+        postpk = comment.post.pk
+        return redirect('blog:post_detail', pk=postpk)
+    
+hits_comment = HitsCommentView.as_view()
+
+class UnHitsCommentView(View):
+    def get(self, request, pk):
+        comment = Comment.objects.get(pk=pk)
+        if request.user not in comment.unhit_users.all():
+            comment.unhit_users.add(request.user)
+            comment.unhits += 1
+            comment.save()
+        else:
+            comment.unhit_users.remove(request.user)
+            comment.unhits -= 1
+            comment.save()
+        postpk = comment.post.pk
+        return redirect('blog:post_detail', pk=postpk)
+    
+unhits_comment = UnHitsCommentView.as_view()

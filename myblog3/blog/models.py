@@ -23,10 +23,16 @@ class Post(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     hit_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='hit_posts')
     unhit_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unhit_posts')
-    category = models.OneToOneField('Category', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.title
     
 class Category(models.Model):
     title = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.title
     
 class Comment(models.Model):
     content = models.TextField()
@@ -40,3 +46,6 @@ class Comment(models.Model):
     hit_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='hit_comments')
     unhit_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='unhit_comments')
     parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    
+    def __str__(self):
+        return self.content
