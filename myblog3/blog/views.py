@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.views import View
+from math import ceil
 
 class PostListView(ListView):
     model = Post
@@ -13,8 +14,11 @@ class PostListView(ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         q = self.request.GET.get('q', '')
+        category = self.request.GET.get('category', '')
         if q:
             qs = qs.filter(Q(title__icontains=q)|Q(content__icontains=q)|Q(comment__content__icontains=q)|Q(user__nickname__icontains=q)).distinct()
+        if category:
+            qs = qs.filter(category__title=category)
         return qs
     
 post_list = PostListView.as_view()

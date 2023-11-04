@@ -11,9 +11,13 @@ signup = CreateView.as_view(
     success_url = reverse_lazy('accounts:login')
 )
 
-login = LoginView.as_view(
-    template_name = 'accounts/form.html',
-)
+class MyLoginView(LoginView):
+    template_name = 'accounts/form.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('blog:post_list')
+    
+login = MyLoginView.as_view()
 
 class MyLogoutView(LoginRequiredMixin, LogoutView):
     next_page = reverse_lazy('accounts:login')
