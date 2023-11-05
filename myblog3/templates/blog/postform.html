@@ -1,0 +1,53 @@
+{% extends 'blog/menu.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_category" class="form-label">Category</label>
+                    {{ form.category }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_title" class="form-label">Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_content" class="form-label">Content</label>
+                    {{ form.content }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_thumb_image" class="form-label">Thumbnail Image</label>
+                    {{ form.thumb_image }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_file_upload" class="form-label">File Upload</label>
+                    {{ form.file_upload }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_product_name" class="form-label">Product Name</label>
+                    {{ form.product_name }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_product_price" class="form-label">Product Price</label>
+                    {{ form.product_price }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_product_mall" class="form-label">Product Mall</label>
+                    {{ form.product_mall }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_product_link" class="form-label">Product Link</label>
+                    {{ form.product_link }}
+                </div>
+                <input type="submit" class="btn btn-primary" value="확인">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

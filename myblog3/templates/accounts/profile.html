@@ -1,17 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로필</title>
-</head>
-<body>
-    <h1>프로필 페이지입니다.</h1>
-    <p>ID : {{user.username}}</p>
-    <p>닉네임 : {{user.nickname}}</p>
-    <p>내 누적 게시글 수 : {{user.posting_num}}</p>
-    <a href="{% url 'blog:mypost_list' %}">내 게시글 보기</a>
-    <p>내 누적 댓글 수 : {{user.reply_num}}</p>
-    <a href="{% url 'blog:mycomment_list' %}">내가 댓글 쓴 게시물 보기</a>
-</body>
-</html>
+{% extends 'blog/menu.html' %}
+
+{% block content %}
+{% load static %}
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Profile</h1>
+            <p class="lead fw-normal text-white-50 mb-0">나의 프로필 보기</p>
+        </div>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body m-4">
+                        <div class="mb-3"><strong>ID:</strong> {{user.username}}</div>
+                        <div class="mb-3"><strong>닉네임:</strong> {{user.nickname}}</div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div><strong>내 누적 게시글 수:</strong> {{user.posting_num}}</div>
+                            <a href="{% url 'blog:mypost_list' %}" class="btn btn-outline-dark">내 게시글 보기</a>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div><strong>내 누적 댓글 수:</strong> {{user.reply_num}}</div>
+                            <a href="{% url 'blog:mycomment_list' %}" class="btn btn-outline-dark">내가 댓글 쓴 게시물 보기</a>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><strong>내 추천 게시글 수:</strong> {{user.hit_num}}</div>
+                            <a href="{% url 'blog:myhits_list' %}" class="btn btn-outline-dark">내가 추천한 게시물 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

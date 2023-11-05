@@ -1,4 +1,5 @@
 {% extends 'blog/menu.html' %}
+{% load humanize %}
 
 {% block content %}
 {% load static %}
@@ -16,6 +17,16 @@
                 </div>
             </div>
         </header>
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-6">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="제목, 내용, 댓글, 작성자" aria-label="Search" name="q" value="{{ request.GET.q }}">
+                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -78,7 +89,7 @@
                                         <p class="m-0">({{post.hits}})</p>
                                     </div>
                                     <!-- Product price-->
-                                    {{ post.product_price }}₩
+                                    {{ post.product_price|intcomma }}₩
                                 </div>
                             </div>
                             <!-- Product actions-->

@@ -27,9 +27,12 @@ class MyPostListView(LoginRequiredMixin, ListView):
     model = Post
     
     def get_queryset(self):
-        queryset = super().get_queryset()
+        qs = super().get_queryset()
         current_user = self.request.user
-        return queryset.filter(user=current_user)
+        q = self.request.GET.get('q', '')
+        if q:
+            qs = qs.filter(Q(title__icontains=q)|Q(content__icontains=q)|Q(comment__content__icontains=q)|Q(user__nickname__icontains=q)).distinct()
+        return qs.filter(user=current_user)
     
 mypost_list = MyPostListView.as_view()
 
@@ -37,15 +40,32 @@ class MyCommentListView(LoginRequiredMixin, ListView):
     model = Post
     
     def get_queryset(self):
+        qs = super().get_queryset()
         current_user = self.request.user
-        return Post.objects.filter(comment__user=current_user)
+        q = self.request.GET.get('q', '')
+        if q:
+            qs = qs.filter(Q(title__icontains=q)|Q(content__icontains=q)|Q(comment__content__icontains=q)|Q(user__nickname__icontains=q)).distinct()
+        return qs.filter(comment__user=current_user).distinct()
     
 mycomment_list = MyCommentListView.as_view()
+
+class MyHitsListView(LoginRequiredMixin, ListView):
+    model = Post
+    
+    def get_queryset(self):
+        qs = super().get_queryset()
+        current_user = self.request.user
+        q = self.request.GET.get('q', '')
+        if q:
+            qs = qs.filter(Q(title__icontains=q)|Q(content__icontains=q)|Q(comment__content__icontains=q)|Q(user__nickname__icontains=q)).distinct()
+        return qs.filter(hit_users__in=[current_user])
+    
+myhits_list = MyHitsListView.as_view()
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'blog/form.html'
+    template_name = 'blog/postform.html'
     
     def form_valid(self, form):
         mypost = form.save(commit=False)
@@ -80,7 +100,7 @@ post_detail = PostDetailView.as_view()
 class PostEditView(UserPassesTestMixin, UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'blog/form.html'
+    template_name = 'blog/postform.html'
     
     def get_success_url(self):
         return reverse_lazy('blog:post_detail', kwargs={'pk': self.object.pk})
@@ -104,6 +124,7 @@ delete_post = PostDeleteView.as_view()
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
+    template_name = 'blog/commentform.html'
     
     def form_valid(self, form):
         pk = self.kwargs['pk']
@@ -122,7 +143,7 @@ create_comment = CommentCreateView.as_view()
 class CommentEditView(UserPassesTestMixin, UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/form.html'
+    template_name = 'blog/commentform.html'
     
     def get_success_url(self):
         return reverse_lazy('blog:post_detail', kwargs={'pk': self.object.post.pk})
@@ -135,7 +156,7 @@ edit_comment = CommentEditView.as_view()
 class ReplyCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/form.html'
+    template_name = 'blog/commentform.html'
     
     def form_valid(self, form):
         pk = self.kwargs['pk']
@@ -161,11 +182,15 @@ class HitsPostView(View):
         if request.user not in post.hit_users.all():
             post.hit_users.add(request.user)
             post.hits += 1
+            request.user.hit_num += 1
             post.save()
+            request.user.save()
         else:
             post.hit_users.remove(request.user)
             post.hits -= 1
+            request.user.hit_num -=1
             post.save()
+            request.user.save()
         return redirect('blog:post_detail', pk=pk)
     
 hits_post = HitsPostView.as_view()

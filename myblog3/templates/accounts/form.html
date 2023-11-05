@@ -1,3 +1,8 @@
+{% extends 'blog/menu.html' %}
+
+{% block content %}
+{% load static %}
+
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
@@ -5,3 +10,5 @@
     </table>
     <input type="submit" value="Submit">
 </form>
+
+{% endblock %}
