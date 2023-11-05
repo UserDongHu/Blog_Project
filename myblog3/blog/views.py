@@ -124,7 +124,6 @@ delete_post = PostDeleteView.as_view()
 class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/commentform.html'
     
     def form_valid(self, form):
         pk = self.kwargs['pk']
@@ -143,7 +142,7 @@ create_comment = CommentCreateView.as_view()
 class CommentEditView(UserPassesTestMixin, UpdateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/commentform.html'
+    template_name = 'blog/editcommentform.html'
     
     def get_success_url(self):
         return reverse_lazy('blog:post_detail', kwargs={'pk': self.object.post.pk})
@@ -156,7 +155,7 @@ edit_comment = CommentEditView.as_view()
 class ReplyCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'blog/commentform.html'
+    template_name = 'blog/addreplyform.html'
     
     def form_valid(self, form):
         pk = self.kwargs['pk']

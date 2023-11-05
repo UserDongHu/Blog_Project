@@ -1,0 +1,20 @@
+{% extends 'blog/menu.html' %}
+
+{% block content %}
+{% load static %}
+
+<section class="py-5 mx-3">
+    <div class="container px-4 px-lg-5">
+        <h3>Edit Comment</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="commentContent" class="form-label">댓글 내용</label>
+                <textarea class="form-control" id="commentContent" name="content" rows="3" style="resize: none;">{{ object.content }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">작성</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
