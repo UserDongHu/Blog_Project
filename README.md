@@ -13,12 +13,29 @@
   * 회원가입 후, 로그인을 해서 게시글을 올릴 수 있습니다.
   * 게시글에서 상세 정보를 볼 수 있고 추천과 비추천, 댓글을 통해 의견을 나눌 수 있습니다.
   * 내가 쓴 글과 댓글들을 확인할 수 있습니다.
-## 2. 개발 환경
-  * Web Framework
-    * Django 4.2.6
+## 2. Stacks
+  
+  * Enviroment
+
+    ![VSC](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+    ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+    ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+
+ 
+
+  * Development
+
+
+    ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+    ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+    ![BootStrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+ 
+
 
   * DataBase
-    * SQLite3
+    
+    ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+
   
 
 ## 3. 프로젝트 구조 및 플로우 차트
@@ -90,7 +107,8 @@ myblog
 
 
 ## 4. WBS
-<img width="1103" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/3c49c7f1-acd5-4ce0-9391-2b3c7700c005">
+<img width="1109" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/46094cf6-d052-407e-a632-d481453e0452">
+
 
 
 
