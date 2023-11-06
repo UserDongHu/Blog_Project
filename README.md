@@ -24,18 +24,79 @@
 ## 3. 프로젝트 구조 및 플로우 차트
   3.1 프로젝트 구조
 
+```  
+myblog
+├── accounts
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── blog
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── manage.py
+├── media
+│   └── blog
+│       ├── files
+│       └── thumb_images
+├── projectdjango
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── static
+│   ├── assets
+│   │   └── favicon.ico
+│   ├── css
+│   │   └── styles.css
+│   ├── index.html
+│   └── js
+│       └── scripts.js
+└── templates
+    ├── accounts
+    │   ├── form.html
+    │   └── profile.html
+    └── blog
+        ├── addreplyform.html
+        ├── editcommentform.html
+        ├── menu.html
+        ├── post_confirm_delete.html
+        ├── post_detail.html
+        ├── post_list.html
+        └── postform.html
+```
     
   3.2 플로우 차트
   
-<img width="777" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/87f0db11-f654-403f-804a-2411a263875b">
+<img width="1127" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/033478cb-297b-4555-89ad-0c159302285b">
+
 
 
 ## 4. WBS
+<img width="1103" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/3c49c7f1-acd5-4ce0-9391-2b3c7700c005">
 
 
 
 ## 5. ERD 
-<img width="711" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/85f17c91-4b32-4edc-85fc-0ad5dba5a8e0">
+<img width="783" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/b081be7e-4b19-49f2-aadf-275f10afbef3">
+
 
 
 
