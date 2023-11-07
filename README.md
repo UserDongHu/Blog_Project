@@ -31,6 +31,7 @@
 
     ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
     ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+    ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
     ![BootStrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
  
 
@@ -163,7 +164,9 @@ myblog
 * 메인화면에서 회원가입과 로그인
 ![Signup_Login](https://github.com/UserDongHu/Blog_Project/assets/137512514/7d4cc815-1345-4f1a-a513-2c802be0d247)
 <br></br>
-* 카테고리별로 보기
+* 게시물 목록 보기
+* 카테고리별로 볼 수 있음
+* 게시물의 추천 5개당 별이 하나씩 늘어남
 ![Post_list](https://github.com/UserDongHu/Blog_Project/assets/137512514/bfd4296d-b710-4396-be2f-acbbb248f20c)
 <br></br>
 * 게시물 작성하기
