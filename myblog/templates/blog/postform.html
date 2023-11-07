@@ -1,0 +1,60 @@
+{% extends 'blog/menu.html' %}
+
+{% block content %}
+{% load static %}
+
+<section class="py-5 mx-3">
+    <div class="container px-4 px-lg-5">
+        <div class="card">
+            <div class="card-body m-4">
+                {% if not form.instance.category %}
+                <h3 class="mb-3">Create Post</h3>
+                {% else %}
+                <h3 class="mb-3">Edit Post</h3>
+                {% endif %}
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_category" class="form-label">Category</label>
+                        {{form.category}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_title" class="form-label">Title</label>
+                        <input class="form-control" id="id_title" name="title" type="text" value="{{form.instance.title }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_content" class="form-label">Content</label>
+                        <textarea class="form-control" id="id_content" name="content" rows="3" style="resize :none;">{{form.instance.content}}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_thumb_image" class="form-label">Thumbnail Image</label>
+                        <p>{{form.thumb_image}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_file_upload" class="form-label">File Upload</label>
+                        <p>{{form.file_upload}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_product_name" class="form-label">Product Name</label>
+                        <input placeholder="상품명" class="form-control" id="id_product_name" name="product_name" type="text" value="{{form.instance.product_name}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_product_price" class="form-label">Product Price</label>
+                        <input placeholder="ex) 10000" class="form-control" id="id_product_price" name="product_price" type="text" value="{{form.instance.product_price}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_product_mall" class="form-label">Product Mall</label>
+                        <input placeholder="ex) 쿠팡, 아마존" class="form-control" id="id_product_mall" name="product_mall" type="text" value="{{form.instance.product_mall}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_product_link" class="form-label">Product Link</label>
+                        <input class="form-control" id="id_product_link" name="product_link" type="text" value="{{ form.instance.product_link }}">
+                    </div>
+                    <input type="submit" class="btn btn-outline-dark" value="확인">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
