@@ -160,3 +160,36 @@ myblog
 
 
 ## 6. UI 
+* 메인화면에서 회원가입과 로그인
+![Signup_Login](https://github.com/UserDongHu/Blog_Project/assets/137512514/7d4cc815-1345-4f1a-a513-2c802be0d247)
+<br></br>
+* 카테고리별로 보기
+![Post_list](https://github.com/UserDongHu/Blog_Project/assets/137512514/bfd4296d-b710-4396-be2f-acbbb248f20c)
+<br></br>
+* 게시물 작성하기
+* 로그인된 유저만 작성할 수 있음
+![CreatePost](https://github.com/UserDongHu/Blog_Project/assets/137512514/a2379174-a738-422a-98f9-263a978025e2)
+<br></br>
+* 게시물 추천, 비추천 기능과 게시물 수정
+* 로그인된 유저만 추천, 비추천 할 수 있고 본인이 쓴 게시물만 수정 가능
+![EditPost](https://github.com/UserDongHu/Blog_Project/assets/137512514/077e82b9-3e0c-4191-8f53-8e86414ea534)
+<br></br>
+* 게시물 상세보기, 댓글 작성
+* 게시물의 상품명 또는 이미지를 클릭하면 상품 링크로 연결
+* 로그인된 유저만 댓글을 작성할 수 있음
+![PostDetail+CreateComment](https://github.com/UserDongHu/Blog_Project/assets/137512514/1a21eb57-fb6b-4702-8bba-bb8c56009360)
+<br></br>
+* 댓글 추천, 비추천 기능과 대댓글 작성
+* 로그인된 유저만 댓글을 추천, 비추천 할 수 있고 대댓글을 작성할 수 있음
+![HitComment+CreateReply](https://github.com/UserDongHu/Blog_Project/assets/137512514/a208af64-cc95-43dd-ab63-9a09982374af)
+<br></br>
+* 댓글, 대댓글 수정
+* 내가 쓴 댓글 또는 대댓글만 수정 가능
+![Edit comment](https://github.com/UserDongHu/Blog_Project/assets/137512514/199c57e8-77ad-4eca-9007-22bbe7ff64e1)
+<br></br>
+* 프로필에서 내가 쓴 게시물, 내가 댓글 쓴 게시물, 내가 추천한 게시물 보기
+![Profile+mypost+commentpost+hitpost](https://github.com/UserDongHu/Blog_Project/assets/137512514/9f2436f2-50a0-4c5a-99e9-600f36ec9689)
+<br></br>
+* 게시물 리스트에서 검색하기
+* 제목, 내용, 댓글, 작성자 등으로 검색할 수 있음
+![Search](https://github.com/UserDongHu/Blog_Project/assets/137512514/afd191b3-f07d-4bb7-a3ac-301a8a25140d)
