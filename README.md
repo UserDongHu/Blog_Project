@@ -125,6 +125,10 @@ myblog
 
 
 ## 5. ERD 
+* User, Post, Comment, Category로 4개의 테이블로 구성
+* User과 Post, User과 Comment, Post와 Comment를 1:N 관계로 연결
+* Post와 Category는 N:N 관계로 연결
+* Comment에 parent_comments_id를 이용해서 대댓글을 구현
 <img width="783" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/b081be7e-4b19-49f2-aadf-275f10afbef3">
 
 
