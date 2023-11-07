@@ -41,7 +41,7 @@
 
   
 
-## 3. 프로젝트 구조 및 플로우 차트
+## 3. 프로젝트/URL 구조 및 플로우 차트
 
   ### 3.1 프로젝트 구조
   
@@ -106,9 +106,31 @@ myblog
         └── postform.html
 ```
 
+### 3.2 URL 구조
+#### accounts
+* '/accounts/signp' : 회원가입
+* '/accounts/login' : 로그인
+* '/accounts/logout' : 로그아웃
+* '/accounts/profile' : 내 프로필
 
+#### blog
+* '/blog' : 모든 게시글 보기
+* '/blog/mypost' : 내가 쓴 게시글 보기
+* '/blog/mycomment' : 내가 댓글 쓴 게시물 보기
+* '/blog/myhits' : 내가 추천 누른 게시물 보기
+* '/blog/create' : 게시글 생성
+* '/blog/<int:pk>' : 게시물 상세 보기
+* '/blog/<int:pk>/edit' : 게시물 수정
+* '/blog/<int:pk>/delete' : 게시물 삭제
+* '/blog/comment/create/<int:pk>' : 댓글 생성
+* '/blog/comment/edit/<int:pk>' : 댓글 수정
+* '/blog/reply/create/<int:pk>' : 대댓글 생성
+* '/blog/hits/post/<int:pk>' : 게시글 추천
+* '/blog/unhits/post/<int:pk>' : 게시글 비추천
+* '/blog/hits/comment/<int:pk>' : 댓글 추천
+* '/blog/unhits/comment/<int:pk>' : 댓글 비추천
 
-### 3.2 플로우 차트
+### 3.3 플로우 차트
 * 메인페이지에서 크게 로그인/회원가입과 게시물보기를 선택할 수 있습니다.
 * 로그인이 된 유저만 게시물쓰기, 추천, 댓글달기 등을 할 수 있습니다.
 <img width="1127" alt="image" src="https://github.com/UserDongHu/Blog_Project/assets/137512514/033478cb-297b-4555-89ad-0c159302285b">
