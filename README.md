@@ -111,28 +111,38 @@ myblog
 ```
 
 ### 3.2 URL 구조
-#### accounts
-* '/accounts/signp' : 회원가입
-* '/accounts/login' : 로그인
-* '/accounts/logout' : 로그아웃
-* '/accounts/profile' : 내 프로필
 
-#### blog
-* '/blog' : 모든 게시글 보기
-* '/blog/mypost' : 내가 쓴 게시글 보기
-* '/blog/mycomment' : 내가 댓글 쓴 게시물 보기
-* '/blog/myhits' : 내가 추천 누른 게시물 보기
-* '/blog/create' : 게시글 생성
-* '/blog/<int:pk>' : 게시물 상세 보기
-* '/blog/<int:pk>/edit' : 게시물 수정
-* '/blog/<int:pk>/delete' : 게시물 삭제
-* '/blog/comment/create/<int:pk>' : 댓글 생성
-* '/blog/comment/edit/<int:pk>' : 댓글 수정
-* '/blog/reply/create/<int:pk>' : 대댓글 생성
-* '/blog/hits/post/<int:pk>' : 게시글 추천
-* '/blog/unhits/post/<int:pk>' : 게시글 비추천
-* '/blog/hits/comment/<int:pk>' : 댓글 추천
-* '/blog/unhits/comment/<int:pk>' : 댓글 비추천
+- accounts
+
+  
+| App       | URL                                        | Views Function    | HTML File Name                        | Note           |
+|-----------|--------------------------------------------|-------------------|---------------------------------------|----------------|
+| accounts  | '/signup'                                  | signup            | accounts/form.html                    | 회원가입         |
+| accounts  | '/login'                                   | login             | accounts/form.html                    | 로그인          |
+| accounts  | '/logout'                                  | logout            | -                                     | 로그아웃         |
+| accounts  | '/profile'                                 | profile           | accounts/profile.html                 | 내 프로필        |
+
+- blog
+
+| App       | URL                                        | Views Function    | HTML File Name                        | Note           |
+|-----------|--------------------------------------------|-------------------|---------------------------------------|----------------|
+| blog      | '/blog'                                    | post_list         | blog/post_list.html                   | 모든 게시글 보기   |
+| blog      | '/blog/mypost'                             | mypost_list       | blog/post_list.html                   | 내가 쓴 게시글 보기 |
+| blog      | '/blog/mycomment'                          | mycomment_list    | blog/post_list.html                   | 내가 댓글 쓴 게시물 보기 |
+| blog      | '/blog/myhits'                             | myhits_list       | blog/post_list.html                   | 내가 추천 누른 게시물 보기 |
+| blog      | '/blog/create'                             | create_post       | blog/post_form.html                   | 게시글 생성          |
+| blog      | '/blog/\<int:pk\>'                         | post_detail       | blog/post_detail.html                 | 게시물 상세 보기       |
+| blog      | '/blog/\<int:pk\>/edit'                    | edit_post         | blog/post_form.html                   | 게시물 수정          |
+| blog      | '/blog/\<int:pk\>/delete'                  | delete_post       | blog/post_confirm_delete.html         | 게시물 삭제          |
+| blog      | '/blog/comment/create/\<int:pk\>'          | create_comment    | -                                     | 댓글 생성            |
+| blog      | '/blog/comment/edit/\<int:pk\>'            | edit_comment      | blog/editcommentform.html             | 댓글 수정            |
+| blog      | '/blog/reply/create/\<int:pk\>'            | create_reply      | blog/addreplyform.html                | 대댓글 생성          |
+| blog      | '/blog/hits/post/\<int:pk\>'               | hits_post         | blog/post_detail.html                 | 게시글 추천          |
+| blog      | '/blog/unhits/post/\<int:pk\>'             | unhits_post       | blog/post_detail.html                 | 게시글 비추천        |
+| blog      | '/blog/hits/comment/\<int:pk\>'            | hits_comment      | blog/post_detail.html                 | 댓글 추천            |
+| blog      | '/blog/unhits/comment/\<int:pk\>'          | unhits_comment    | blog/post_detail.html                 | 댓글 비추천          |
+
+
 
 ### 3.3 플로우 차트
 * 메인페이지에서 크게 로그인/회원가입과 게시물보기를 선택할 수 있습니다.
